@@ -16,6 +16,8 @@ def is_allowed_file(filename: str):
 @router.post("/upload-resumes")
 async def upload_resumes(files: list[UploadFile] = File(...)):
 
+
+
     uploaded_files = []
     failed_files = []
     success_messages = []
