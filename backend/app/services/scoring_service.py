@@ -5,7 +5,7 @@ import re
 SKILLS_DB = [
     "python", "java", "fastapi", "react",
     "sql", "machine learning", "django",
-    "node", "javascript","css","postgreSQL"
+    "node", "javascript","css","postgresql"
     ]
 
 
@@ -20,13 +20,19 @@ def calculate_score(resume_text, jd_text):
     resume_text = resume_text.lower()
     jd_text = jd_text.lower()
 
-    # Skill Match (40 marks)
+    # Skills for display only
     resume_skills = extract_skills(resume_text)
     jd_skills = extract_skills(jd_text)
+
+    matched_skills = list(resume_skills & jd_skills)
+    missing_skills = list(jd_skills - resume_skills)
+
+    # resume_skills = extract_skills(resume_text)
+    # jd_skills = extract_skills(jd_text)
     
     
-    skill_score = (len(resume_skills & jd_skills) /
-                  (len(jd_skills) or 1)) * 40
+    # skill_score = (len(resume_skills & jd_skills) /
+    #               (len(jd_skills) or 1)) * 40
     
 
     #  Keyword Match (30 marks)
@@ -37,8 +43,18 @@ def calculate_score(resume_text, jd_text):
                     (len(jd_words) or 1)) * 30
 
     # Experience (20 marks)
+   # Experience (20 marks)
    
-    exp_score = 20 if "year" in resume_text else 0
+    match = re.search(
+        r"(\d+)\+?\s*years?\s+of\s+experience",
+        resume_text
+        )
+    if match:
+        years = int(match.group(1))
+        exp_score = min(years * 10, 20)
+    else:
+        exp_score = 0
+    # exp_score = 20 if "year" in resume_text else 0
 
     #  Education (10 marks)
     edu_score = 10 if any(

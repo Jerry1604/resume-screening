@@ -55,7 +55,7 @@ def extract_name(text: str):
 def extract_experience(text: str):
     t = normalize(text)
 
-    years = re.findall(r"(\d+)\+?\s*(years|yrs|year|yr)", t)
+    years = re.findall(r"(\d+)\+?\s*(?:years?|yrs?)\s+of\s+experience",t)
     if years:
         return max(int(y[0]) for y in years)
 
@@ -64,7 +64,7 @@ def extract_experience(text: str):
     if "fresher" in t:
         return 0
 
-    return 2
+    return 0
 
 
 def experience_label(years: int):
