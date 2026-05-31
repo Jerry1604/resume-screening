@@ -132,11 +132,11 @@ def compute_score(resume_text, jd_text):
     resume_skills = extract_skills(resume_clean)
     jd_skills = extract_skills(jd_clean)
 
-    # # skills score
-    # skills_score = (
-    #     len(resume_skills & jd_skills) / len(jd_skills) * 100
-    #     if jd_skills else 0
-    # )
+    # skills score
+    skills_score = (
+        len(resume_skills & jd_skills) / len(jd_skills) * 100
+        if jd_skills else 0
+    )
 
     # keyword score (safe)
     resume_words = set(resume_clean.split())
