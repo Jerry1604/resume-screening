@@ -19,24 +19,24 @@ def calculate_score(resume_text, jd_text):
     resume_text = resume_text.lower()
     jd_text = jd_text.lower()
 
-    # 1. Skill Match (40 marks)
+    # Skill Match (40 marks)
     resume_skills = extract_skills(resume_text)
     jd_skills = extract_skills(jd_text)
 
     skill_score = (len(resume_skills & jd_skills) /
                   (len(jd_skills) or 1)) * 40
 
-    # 2. Keyword Match (30 marks)
+    #  Keyword Match (30 marks)
     jd_words = set(jd_text.split())
     resume_words = set(resume_text.split())
 
     keyword_score = (len(jd_words & resume_words) /
                     (len(jd_words) or 1)) * 30
 
-    # 3. Experience (20 marks)
+    # Experience (20 marks)
     exp_score = 20 if "year" in resume_text else 0
 
-    #  4. Education (10 marks)
+    #  Education (10 marks)
     edu_score = 10 if any(
         x in resume_text for x in ["b.tech", "btech", "bachelor"]
     ) else 5
