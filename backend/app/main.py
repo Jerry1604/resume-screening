@@ -9,11 +9,6 @@ from app.routes import scoring_routes
 
 
 
-
-
-
-
-
 app = FastAPI()
 
 app.add_middleware(

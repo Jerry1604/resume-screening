@@ -9,17 +9,14 @@ router = APIRouter()
 UPLOAD_DIR = "app/uploads"
 
 
-# =========================
 # REQUEST MODEL
-# =========================
 class ScoreRequest(BaseModel):
     jd: str
     resumes: list
 
 
-# =========================
+
 # GLOBAL TEXT NORMALIZER
-# =========================
 def normalize(text: str):
     text = text.lower()
 
@@ -32,9 +29,7 @@ def normalize(text: str):
     return text
 
 
-# =========================
 # NAME EXTRACTION (FIXED)
-# =========================
 def extract_name(text: str):
     text = normalize(text)
 
@@ -56,10 +51,7 @@ def extract_name(text: str):
 
     return "Unknown Candidate"
 
-
-# =========================
 # EXPERIENCE EXTRACTION
-# =========================
 def extract_experience(text: str):
     t = normalize(text)
 
@@ -85,9 +77,7 @@ def experience_label(years: int):
     return "3+ Years"
 
 
-# =========================
 # EDUCATION EXTRACTION
-# =========================
 def extract_education(text: str):
     t = normalize(text)
 
@@ -107,9 +97,8 @@ def extract_education(text: str):
     return "Not Found"
 
 
-# =========================
+
 # SKILL EXTRACTION
-# =========================
 def extract_skills(text: str):
     t = normalize(text)
 
@@ -134,9 +123,7 @@ def extract_skills(text: str):
     return found
 
 
-# =========================
 # SCORE ENGINE
-# =========================
 def compute_score(resume_text, jd_text):
 
     resume_clean = normalize(resume_text)
@@ -192,9 +179,8 @@ def compute_score(resume_text, jd_text):
     }
 
 
-# =========================
+
 # API ROUTE
-# =========================
 @router.post("/score")
 async def score_resumes(data: ScoreRequest):
 

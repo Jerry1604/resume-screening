@@ -11,7 +11,7 @@ function JDInput({ setJdText }) {
     <div className="border p-5 rounded-lg space-y-5">
 
       <h2 className="text-2xl font-semibold">
-        📄 Job Description
+          Job Description
       </h2>
 
       {/* TOGGLE BUTTONS */}
@@ -28,7 +28,7 @@ function JDInput({ setJdText }) {
             }
           `}
         >
-          ✍️ Enter JD
+          Enter JD
         </button>
 
         <button
@@ -42,7 +42,7 @@ function JDInput({ setJdText }) {
             }
           `}
         >
-          📄 Upload JD
+           Upload JD
         </button>
 
       </div>
@@ -58,7 +58,7 @@ function JDInput({ setJdText }) {
 
             setText(e.target.value);
 
-            // 🔥 SEND TO DASHBOARD
+            // SEND TO DASHBOARD
             setJdText(e.target.value);
           }}
           className="

@@ -13,15 +13,15 @@ function Dashboard() {
   const [search, setSearch] = useState("");
   const [sortDesc, setSortDesc] = useState(true);
 
-  // 🚀 RUN SCREENING
+  //  RUN SCREENING
   const runScreening = async () => {
     if (!jdText.trim()) {
-      setMessage("Enter or upload JD first ❌");
+      setMessage("Enter or upload JD first ");
       return;
     }
 
     if (uploadedFiles.length === 0) {
-      setMessage("Upload resumes first ❌");
+      setMessage("Upload resumes first ");
       return;
     }
 
@@ -36,17 +36,17 @@ function Dashboard() {
 
       const data = res.data.ranked_candidates || res.data;
       setResults(data);
-      setMessage("🎯 Screening completed");
+      setMessage(" Screening completed");
 
     } catch (err) {
       console.error(err);
-      setMessage("❌ Screening failed");
+      setMessage("Screening failed");
     }
 
     setLoading(false);
   };
 
-  // 📊 SORT + SEARCH
+  //  SORT + SEARCH
   const filteredResults = [...results]
   .filter((r) =>
     (r.candidate || "").toLowerCase().includes(search.toLowerCase())
@@ -55,7 +55,7 @@ function Dashboard() {
     sortDesc ? b.score - a.score : a.score - b.score
   );
   
-  // 📦 EXPORT CSV
+  //  EXPORT CSV
   const exportCSV = () => {
     const csv = Papa.unparse(
       results.map((r, i) => ({
@@ -81,7 +81,7 @@ function Dashboard() {
 
       {/* TITLE */}
       <h1 className="text-4xl font-bold text-center">
-        Resume Screening System 🧠
+        Resume Screening System 
       </h1>
 
       {/* UPLOAD */}
@@ -142,7 +142,7 @@ function Dashboard() {
         <div className="border p-5 rounded-lg mt-4">
 
           <h2 className="text-2xl font-bold mb-4">
-            🏆 Candidate Ranking
+             Candidate Ranking
           </h2>
 
           {filteredResults.map((r, index) => (

@@ -8,7 +8,7 @@ JD_DIR = "app/uploads/jd"
 os.makedirs(JD_DIR, exist_ok=True)
 
 
-# 📝 Manual JD
+#  Manual JD
 @router.post("/jd/manual")
 def save_jd(data: dict):
 

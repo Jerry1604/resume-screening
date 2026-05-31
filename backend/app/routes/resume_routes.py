@@ -25,23 +25,23 @@ async def upload_resumes(files: list[UploadFile] = File(...)):
     for file in files:
         try:
 
-            # ❌ Validate filename
+            # Validate filename
             if not file.filename:
                 raise ValueError("Empty filename")
 
-            # ❌ Validate extension
+            # Validate extension
             if not is_allowed_file(file.filename):
                 raise ValueError("Only PDF, DOC, DOCX allowed")
 
             file_path = os.path.join(UPLOAD_DIR, file.filename)
 
-            # 💾 Save file
+            #  Save file
             with open(file_path, "wb") as buffer:
                 shutil.copyfileobj(file.file, buffer)
 
             uploaded_files.append(file.filename)
 
-            # ✅ Success message per file
+            # Success message per file
             success_messages.append(f"{file.filename} uploaded successfully")
 
         except Exception as e:

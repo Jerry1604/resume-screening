@@ -11,7 +11,7 @@ function ResumeUpload({ setUploadedFiles }) {
   const handleUpload = async () => {
 
     if (!files.length) {
-      alert("Please select resumes 📄");
+      alert("Please select resumes ");
       return;
     }
 
@@ -32,13 +32,13 @@ function ResumeUpload({ setUploadedFiles }) {
 
       console.log(response.data);
 
-      // 🔥 SAVE TO DASHBOARD STATE
+      // SAVE TO DASHBOARD STATE
       setUploadedFiles(
         response.data.uploaded_files
       );
 
       alert(
-        "🚀 Resumes uploaded successfully!"
+        "Resumes uploaded successfully!"
       );
 
       setFiles([]);
@@ -51,7 +51,7 @@ function ResumeUpload({ setUploadedFiles }) {
 
       console.error(error);
 
-      alert("❌ Upload failed");
+      alert("Upload failed");
 
     } finally {
 
