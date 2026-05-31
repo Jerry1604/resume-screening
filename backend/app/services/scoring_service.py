@@ -41,8 +41,8 @@ def calculate_score(resume_text, jd_text):
         x in resume_text for x in ["b.tech", "btech", "bachelor"]
     ) else 5
     
-
-    total = skill_score + keyword_score + exp_score + edu_score
+# skill_score 
+    total =  keyword_score + exp_score + edu_score
 
     return round(min(total, 100), 2)
 

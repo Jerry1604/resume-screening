@@ -155,7 +155,7 @@ function Dashboard() {
               <p><b>Candidate:</b> {r.candidate}</p>
               <p><b>Total Score:</b> {r.score}</p>
 
-              <p><b>Skills:</b>{r.score_breakdown?.skills_score}</p>
+              {/* <p><b>Skills:</b>{r.score_breakdown?.skills_score}</p> */}
               <p><b>Keyword:</b> {r.score_breakdown?.keyword_score}</p>
               <p><b>Experience:</b> {r.score_breakdown?.experience_score}</p>
               <p><b>Education:</b> {r.score_breakdown?.education_score}</p>

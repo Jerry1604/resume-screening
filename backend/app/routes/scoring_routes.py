@@ -132,11 +132,11 @@ def compute_score(resume_text, jd_text):
     resume_skills = extract_skills(resume_clean)
     jd_skills = extract_skills(jd_clean)
 
-    # skills score
-    skills_score = (
-        len(resume_skills & jd_skills) / len(jd_skills) * 100
-        if jd_skills else 0
-    )
+    # # skills score
+    # skills_score = (
+    #     len(resume_skills & jd_skills) / len(jd_skills) * 100
+    #     if jd_skills else 0
+    # )
 
     # keyword score (safe)
     resume_words = set(resume_clean.split())
@@ -164,7 +164,7 @@ def compute_score(resume_text, jd_text):
     education_score = edu_score_map.get(edu, 50)
 
     final_score = (
-        skills_score * 0.45 +
+        # skills_score * 0.45 +
         keyword_score * 0.25 +
         experience_score * 0.2 +
         education_score * 0.1
@@ -172,7 +172,7 @@ def compute_score(resume_text, jd_text):
 
     return {
         "final_score": round(final_score, 2),
-        "skills_score": round(skills_score, 2),
+        # "skills_score": round(skills_score, 2),
         "keyword_score": round(keyword_score, 2),
         "experience_score": experience_score,
         "education_score": education_score
