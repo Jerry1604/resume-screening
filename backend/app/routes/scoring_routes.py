@@ -52,15 +52,26 @@ def extract_name(text: str):
     return "Unknown Candidate"
 
 # EXPERIENCE EXTRACTION
+
 def extract_experience(text: str):
     t = normalize(text)
 
-    years = re.findall(r"(\d+)\+?\s*(?:years?|yrs?)\s+of\s+experience",t)
+    print("RESUME TEXT:")
+    print(t[:1000])  # first 1000 chars
+
+    years = re.findall(
+        r"(\d+)\+?\s*(?:years?|yrs?)\s+of\s+experience",
+        t
+    )
+
+    print("EXPERIENCE MATCHES:", years)
+
     if years:
-        return max(int(y[0]) for y in years)
+        return max(int(y) for y in years)
 
     if "intern" in t:
         return 1
+
     if "fresher" in t:
         return 0
 
@@ -117,9 +128,10 @@ def extract_skills(text: str):
     found = set()
 
     for skill, keywords in skills_map.items():
-        if any(k in t for k in keywords):
-            found.add(skill)
-
+      if any(re.search(rf"\b{re.escape(k)}\b", t)
+             for k in keywords):
+             found.add(skill)
+        
     return found
 
 
@@ -164,8 +176,7 @@ def compute_score(resume_text, jd_text):
     education_score = edu_score_map.get(edu, 50)
 
     final_score = (
-        # skills_score * 0.45 +
-        keyword_score * 0.25 +
+        keyword_score * 0.3 +
         experience_score * 0.2 +
         education_score * 0.1
     )

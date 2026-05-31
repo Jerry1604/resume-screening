@@ -1,3 +1,4 @@
+
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import re
@@ -11,7 +12,15 @@ SKILLS_DB = [
 
 def extract_skills(text):
     text = text.lower()
-    return set(skill for skill in SKILLS_DB if skill in text)
+    found = set()
+
+    for skill in SKILLS_DB:
+        pattern = r"\b" + re.escape(skill.lower()) + r"\b"
+
+        if re.search(pattern, text):
+            found.add(skill)
+
+    return found
 
 
 
@@ -24,26 +33,15 @@ def calculate_score(resume_text, jd_text):
     resume_skills = extract_skills(resume_text)
     jd_skills = extract_skills(jd_text)
 
-    matched_skills = list(resume_skills & jd_skills)
-    missing_skills = list(jd_skills - resume_skills)
-
-    # resume_skills = extract_skills(resume_text)
-    # jd_skills = extract_skills(jd_text)
-    
-    
-    # skill_score = (len(resume_skills & jd_skills) /
-    #               (len(jd_skills) or 1)) * 40
-    
 
     #  Keyword Match (30 marks)
-    jd_words = set(jd_text.split())
-    resume_words = set(resume_text.split())
-
-    keyword_score = (len(jd_words & resume_words) /
-                    (len(jd_words) or 1)) * 30
+    matched_skills = resume_skills.intersection(jd_skills)
+    keyword_score = (
+    len(matched_skills) /
+    (len(jd_skills) or 1)
+) * 30
 
     # Experience (20 marks)
-   # Experience (20 marks)
    
     match = re.search(
         r"(\d+)\+?\s*years?\s+of\s+experience",
@@ -65,5 +63,6 @@ def calculate_score(resume_text, jd_text):
     total =  keyword_score + exp_score + edu_score
 
     return round(min(total, 100), 2)
+ 
 
 
