@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://resume-screening-1-eao1.onrender.com",
+  baseURL: "https://resume-screening-2-mhvq.onrender.com",
 });
 
 export default API;
