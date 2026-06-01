@@ -1,16 +1,115 @@
-# React + Vite
+# Resume Screening & Candidate Ranking System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A full-stack AI-powered web application that automates resume screening and ranks candidates based on job description matching.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Live Application
 
-## React Compiler
+- Frontend: https://your-vercel-url
+- Backend API: https://your-backend-url
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## 🧠 Architecture Overview
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+The system follows a client-server architecture:
+
+- Frontend (React): Handles file uploads and displays ranked results
+- Backend (FastAPI): Processes resumes, extracts skills, and computes scores
+- Storage: Local file storage for uploaded resumes and job descriptions
+
+### Flow:
+User Upload → Backend Processing → Skill Extraction → Scoring Engine → Ranked Output
+
+---
+
+## ⚙️ Tech Stack
+
+- Frontend: React, JavaScript, Tailwind CSS
+- Backend: FastAPI (Python)
+- File Handling: Python UploadFile API
+- Deployment:
+  - Frontend: Vercel
+  - Backend: Render / Railway
+
+---
+
+## 📊 Scoring Approach
+
+Candidates are ranked using a weighted scoring system:
+
+### 1. Skill Matching (50%)
+- Extract skills from resume
+- Compare with JD keywords
+- Calculate overlap score
+
+### 2. Experience Score (30%)
+- Extract years of experience using text patterns
+- Normalize to scoring scale
+
+### 3. Education Score (20%)
+- Evaluate degree relevance
+
+### Final Score Formula:
+
+---
+
+## 📂 Features
+
+- Upload multiple resumes
+- Upload Job Description (PDF/Text)
+- AI-based candidate ranking
+- Real-time scoring
+- Clean UI dashboard
+
+---
+
+## 📌 Assumptions
+
+- Resumes are in English text format
+- Experience is extracted using regex-based logic
+- Skill extraction is keyword-based (not deep learning model)
+- File size is limited for performance reasons
+
+---
+
+## 🛠️ Setup Instructions
+
+### Backend
+```bash id="setup1"
+cd backend
+pip install -r requirements.txt
+uvicorn app.main:app --reload
+## frontend
+cd frontend
+npm install
+npm run dev
+
+---
+
+# 📄 4. Brief Documentation (Interview Version)
+
+## 🧠 Architecture Summary
+
+> The system is a full-stack resume screening application built using React and FastAPI. The frontend handles user interaction and file uploads, while the backend processes resumes, extracts structured data, and computes candidate scores based on similarity with the job description.
+
+---
+
+## ⚙️ Scoring Logic
+
+- Skill Match → 50%
+- Experience → 30%
+- Education → 20%
+
+The system ranks candidates based on weighted similarity between resume content and job description requirements.
+
+---
+
+## 📌 Key Assumptions
+
+- Resumes are structured text-based PDFs
+- Skill extraction uses rule-based keyword matching
+- No external ML model training is used
+- Focus is on explainability and simplicity of scoring
+
