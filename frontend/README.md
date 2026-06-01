@@ -6,8 +6,8 @@ A full-stack AI-powered web application that automates resume screening and rank
 
 ## 🚀 Live Application
 
-- Frontend: https://your-vercel-url
-- Backend API: https://your-backend-url
+- Frontend: resume-screening-jqa4.vercel.app
+- Backend API: https://resume-screening-2-mhvq.onrender.com
 
 ---
 
